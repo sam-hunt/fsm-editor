@@ -1,0 +1,14 @@
+main {
+    /* display: flex; */
+    /* align-items: stretch; */
+    /* align-content: stretch; */
+    /* display: flex; */
+    /* flex-direction: column; */
+    height: 100%;
+}
+
+.d3-component {
+    border: 1px solid var(--primary-color);
+    width: 100%;
+    height: 800px;
+}

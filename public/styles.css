@@ -1,0 +1,61 @@
+:root {
+  --bg-color: #151515;
+  --primary-color: #BBBBBF;
+  --accent-color: #CB9EFF;
+  --icon-size: 28px;
+}
+
+html, body, main {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 24px;
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+}
+
+main {
+  padding: 10px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: normal;
+}
+
+h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: normal;
+}
+
+.highlight {
+  color: var(--accent-color);
+}
+
+a {
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+.links .icon {
+  -webkit-transition: fill 0.2s ease-out;
+  -moz-transition: fill 0.2s ease-out;
+  transition: fill 0.2s ease-out;
+  fill: var(--primary-color);
+  height: var(--icon-size);
+  width: var(--icon-size);
+}
+
+.links img:hover, .links svg:hover {
+  filter: sepia(100%) saturate(200%) brightness(80%) hue-rotate(220deg);
+}
