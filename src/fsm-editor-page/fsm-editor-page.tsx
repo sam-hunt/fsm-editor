@@ -22,8 +22,8 @@ const fsmInput: FsmInput<string, string> = {
 };
 
 const FsmEditorPage = () => (<>
-    <h1>Finite State Machine Editor</h1>
     <main>
+        <h1>Finite State Machine Editor</h1>
         <PrismCode code={fsmInputToJs(fsmInput)}></PrismCode>
         <VisualFsmEditor fsmInput={fsmInput}></VisualFsmEditor>
     </main>
