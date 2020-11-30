@@ -1,23 +1,114 @@
 .d3-component {
-    border: 1px solid var(--primary-color);
     width: 100%;
     height: 800px;
 }
-
 .d3-component path.link {
     fill: none;
     stroke: #666;
     stroke-width: 50px;
 }
-
-.d3-component  circle {
-    fill: #ccc;
-    stroke: #fff;
+.d3-component circle {
+    /* fill: #ccc; */
+    /* stroke: #fff; */
     stroke-width: 40px;
 }
-
 .d3-component text {
     fill: #000;
     font: 30px sans-serif;
     pointer-events: none;
 }
+
+section {
+    padding: 10px;
+    margin: 20px 0px;
+}
+
+.bordered {
+    border: 1px solid var(--primary-color);
+}
+
+input, select {
+    width: 100%;
+    height: 45px;
+    padding: 0 1rem;
+    margin-top: 1rem;
+    box-sizing: border-box;
+    font: inherit;
+    border-radius: 30px;
+    border: 2px solid var(--primary-color);
+    background-color: var(--bg-color);
+    color: var(--accent-color);
+    -webkit-appearance: none;
+}
+
+input:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+input.has-error {
+    border-color: tomato;
+}
+
+.error {
+    margin: 0;
+    font-size: 90%;
+    color: tomato;
+}
+
+.chips-item {
+    cursor: default;
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 40px;
+    height: 40px;
+    padding: 0 4px 0 1rem;
+    display: inline-flex;
+    align-items: center;
+    margin: 0 0.3rem 0.3rem 0;
+}
+
+.button {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    font-size: 18px;
+    margin-left: 10px;
+    font-weight: bold;
+    padding: 0;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button:hover {
+    background-color: var(--accent-color);
+}
+
+li span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-transition > input, .new-transition > select {
+    width: 180px;
+}
+.new-transition > input {
+    color: var(--accent-color);
+}
+.new-transition > select {
+    color: var(--primary-color);
+}
+/* .new-transition > select > option::placeholder {
+    color: #666;
+} */

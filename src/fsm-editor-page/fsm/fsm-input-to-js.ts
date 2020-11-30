@@ -1,20 +1,23 @@
 import { FsmInput } from './fsm-input.interface';
 
-export const fsmInputToJs = <S extends string, T extends string>(fsm: FsmInput<S, T>) => {
-    const [name, from, to] = ['name', 'from', 'to'].map(k => Math.max(...fsm.transitions.map((t: any) => t[k].length)));
-    const methods = Math.max(...Object.keys(fsm.methods).map(k => k.length));
-    return `
-const fsm = new StateMachine({
+export const fsmInputToJs = (fsm: FsmInput) => {
+    const methods = fsm.transitions.map(t => `on${t.name[0].toUpperCase()}${t.name.slice(1)}`);
+
+    const [maxName, maxFrom, maxTo] = ['name', 'from', 'to'].map(k => Math.max(...fsm.transitions.map((t: any) => t[k].length)));
+    const maxMethods = Math.max(...methods.map(k => k.length));
+
+    return ''+
+`const fsm = new StateMachine({
     init: '${fsm.init}',
     transitions: [
        ${fsm.transitions
-            .map(t => `{ name: '${`${t.name}',`.padEnd(name+2)} from: '${`${t.from}',`.padEnd(from+2)} to: '${`${t.to}'`.padEnd(to+2)}},`)
+            .map(t => `{ name: '${`${t.name}',`.padEnd(maxName+2)} from: '${`${t.from}',`.padEnd(maxFrom+2)} to: '${`${t.to}'`.padEnd(maxTo+2)}},`)
             .join('\n       ')
         }
     ],
     methods: {
-       ${Object.keys(fsm.methods)
-            .map(m => `{ ${(m+':').padEnd(methods+2)}() => { console.log('${m} called'); ${''.padEnd(methods-m.length)}},`)
+       ${methods
+            .map(m => `{ ${(m+':').padEnd(maxMethods+2)}() => { console.log('${m} called'); ${''.padEnd(maxMethods-m.length)}},`)
             .join('\n       ')
         }
     },

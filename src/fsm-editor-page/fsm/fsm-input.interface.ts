@@ -4,11 +4,14 @@ export interface FsmTransition<T, S> {
     to: S;
 };
 
-export interface FsmInput<S extends string, T extends string> {
+export interface FsmInputST<S extends string, T extends string> {
     name?: string;
     init: S;
     transitions: FsmTransition<T, S>[];
-    methods: {
+    methods?: {
         [method in `on${Capitalize<T>}`]: () => void;
     },
 };
+
+// type alias as implicit type inference is not strong enough on nested literals
+export type FsmInput = FsmInputST<string, string>;

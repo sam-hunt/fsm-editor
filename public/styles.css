@@ -59,3 +59,12 @@ a:hover {
 .links img:hover, .links svg:hover {
   filter: sepia(100%) saturate(200%) brightness(80%) hue-rotate(220deg);
 }
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

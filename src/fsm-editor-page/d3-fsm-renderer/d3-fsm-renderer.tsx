@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 import { FsmInput } from '../fsm/fsm-input.interface';
 import { SimulationLinkDatum, SimulationNodeDatum } from 'd3';
 
-const VisualFsmEditor: React.FC<{ fsmInput: FsmInput<string, string> }> = ({ fsmInput }) => {
+const D3FsmRenderer: React.FC<{ fsmInput: FsmInput }> = ({ fsmInput }) => {
     /**
      * The useRef Hook creates a variable that "holds on" to a value across rendering passes.
      * In this case it will hold our component's SVG DOM element.
@@ -18,7 +18,7 @@ const VisualFsmEditor: React.FC<{ fsmInput: FsmInput<string, string> }> = ({ fsm
     React.useEffect(
         () => {
             const fsmLinks = fsmInput.transitions.map(t => ({ source: t.from, target: t.to, name: t.name, type: 'resolved' }));
-            const fsmNodes = Array.from(new Set(fsmInput.transitions.flatMap(t => ([t.from, t.to])))).map(id => ({id}));
+            // const fsmNodes = Array.from(new Set(fsmInput.transitions.flatMap(t => ([t.from, t.to])))).map(id => ({id}));
 
             const data = ({nodes: Array.from(new Set(fsmLinks.flatMap(l => [l.source, l.target])), id => ({id})), links: fsmLinks});
 
@@ -70,8 +70,8 @@ const VisualFsmEditor: React.FC<{ fsmInput: FsmInput<string, string> }> = ({ fsm
 
 
                 const simulation = d3.forceSimulation(nodes)
-                    .force("link", d3.forceLink(links).id((d: any) => d.id))
-                    .force("charge", d3.forceManyBody().strength(-10000))
+                    .force("link", d3.forceLink(links).distance(150).id((d: any) => d.id))
+                    .force("charge", d3.forceManyBody().strength(-6000))
                     .force("x", d3.forceX())
                     .force("y", d3.forceY());
 
@@ -91,7 +91,8 @@ const VisualFsmEditor: React.FC<{ fsmInput: FsmInput<string, string> }> = ({ fsm
                     .attr("markerHeight", 6)
                     .attr("orient", "auto")
                     .append("path")
-                    .attr("fill", color)
+                    // .attr("fill", color)
+                    .attr("fill", "var(--accent-color)")
                     .attr("d", "M0,-5L10,0L0,5");
 
                 const link = svg.append("g")
@@ -100,7 +101,8 @@ const VisualFsmEditor: React.FC<{ fsmInput: FsmInput<string, string> }> = ({ fsm
                     .selectAll("path")
                     .data(links)
                     .join("path")
-                    .attr("stroke", d => color(d.type))
+                    // .attr("stroke", d => color(d.type))
+                    .attr("stroke", "var(--accent-color)")
                     .attr("marker-end", d => `url(${new URL(`#arrow-${d.type}`, window.location as any)})`);
 
                 const node = svg.append("g")
@@ -131,8 +133,6 @@ const VisualFsmEditor: React.FC<{ fsmInput: FsmInput<string, string> }> = ({ fsm
                     node.attr("transform", d => `translate(${d.x},${d.y})`);
                 });
 
-                // invalidation.then(() => simulation.stop());
-
                 // return svg.node();
 
             }
@@ -157,5 +157,5 @@ const VisualFsmEditor: React.FC<{ fsmInput: FsmInput<string, string> }> = ({ fsm
     );
 }
 
-export default VisualFsmEditor;
+export default D3FsmRenderer;
 
