@@ -4,6 +4,7 @@ interface IChipsInputProps {
     placeholder?: string;
     items?: string[];
     onDelete?: (item: string) => void;
+    onAdd?: (item: string) => void;
 }
 
 class ChipsInput extends React.Component<IChipsInputProps> {
@@ -25,6 +26,7 @@ class ChipsInput extends React.Component<IChipsInputProps> {
                     items: [...this.state.items, this.state.value],
                     value: ''
                 });
+                if (this.props.onAdd) this.props.onAdd(this.state.value);
             }
         }
     };

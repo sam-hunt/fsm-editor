@@ -41,7 +41,7 @@ input, select {
     -webkit-appearance: none;
 }
 
-input:focus {
+input:focus, select:focus {
     border-color: var(--accent-color);
     outline: none;
 }

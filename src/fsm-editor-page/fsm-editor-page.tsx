@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FsmInput } from './fsm/fsm-input.interface';
 import { fsmInputToJs } from './fsm/fsm-input-to-js';
 import PrismCode from './prism-code/PrismCode';
-import D3FsmRenderer from './d3-fsm-renderer/d3-fsm-renderer';
+import D3FsmRenderer2 from './d3-fsm-renderer/d3-fsm-renderer-2';
 import FsmFormEditor from './fsm-form-editor/fms-form-editor';
 import './fsm-editor-page.css';
 
@@ -22,7 +22,7 @@ const FsmEditorPage: React.FC = () => {
         <main>
             <h1>Finite State Machine Editor</h1>
             <section className="bordered">
-                <D3FsmRenderer fsmInput={fsmInput}></D3FsmRenderer>
+                <D3FsmRenderer2 fsmInput={fsmInput}></D3FsmRenderer2>
             </section>
             <section>
                 <FsmFormEditor input={fsmInput} handleSave={(fsmInput: FsmInput) => setFsmInput(fsmInput)}></FsmFormEditor>

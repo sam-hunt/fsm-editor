@@ -30,7 +30,7 @@ const FsmFormEditor: React.FC<IFsmFormEditorProps> = ({ input, handleSave }) => 
     const [from, setFrom] = React.useState<string>('')
     const [to, setTo] = React.useState<string>('')
 
-    const states = Array.from(new Set(input.transitions.flatMap(t => ([t.from, t.to]))))
+    const [states, setStates] = React.useState<string[]>(Array.from(new Set(input.transitions.flatMap(t => ([t.from, t.to])))));
 
     return (
         <form>
@@ -38,7 +38,13 @@ const FsmFormEditor: React.FC<IFsmFormEditorProps> = ({ input, handleSave }) => 
             <ChipsInput
                 placeholder="Add a new state"
                 items={states}
-                onDelete={(item) => handleSave(removeState(input, item))}
+                onDelete={(item) => {
+                    setStates(states.filter(s => s !== item));
+                    return handleSave(removeState(input, item));
+                }}
+                onAdd={(item) => {
+                    setStates([...states, item]);
+                }}
             >
             </ChipsInput>
             <br/><br/>
